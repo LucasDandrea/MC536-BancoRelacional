@@ -210,7 +210,7 @@ try:
     conn.commit()
 
     # Importar dados (altere para o caminho correto do seu arquivo)
-    import_vinculo_data(cursor, 'vinculo.csv')
+    import_vinculo_data(cursor, '../dados/tratados/vinculo.csv')
     conn.commit()
     print("\nImportação concluída com sucesso!")
 
