@@ -108,13 +108,11 @@ def transfer_enem_data(cursor):
         cursor.execute("""
             INSERT INTO public.desempenho_enem (
                 nu_ano, nu_media_cn, nu_media_ch, nu_media_lp, 
-                nu_media_mt, nu_media_red, nu_media_obj, nu_media_tot, 
-                co_escola_educacenso
+                nu_media_mt, nu_media_red, co_escola_educacenso
             )
             SELECT 
                 NU_ANO, NU_MEDIA_CN, NU_MEDIA_CH, NU_MEDIA_LP,
-                NU_MEDIA_MT, NU_MEDIA_RED, NU_MEDIA_OBJ, NU_MEDIA_TOT,
-                CO_ESCOLA_EDUCACENSO
+                NU_MEDIA_MT, NU_MEDIA_RED, CO_ESCOLA_EDUCACENSO
             FROM temp_enem
         """)
         print(f"Desempenhos ENEM transferidos: {cursor.rowcount} registros")
@@ -183,8 +181,6 @@ try:
                     NU_MEDIA_LP numeric(6,2),
                     NU_MEDIA_MT numeric(6,2),
                     NU_MEDIA_RED numeric(6,2),
-                    NU_MEDIA_OBJ numeric(6,2),
-                    NU_MEDIA_TOT numeric(6,2),
                     INSE varchar(10),
                     PC_FORMACAO_DOCENTE numeric(5,2),
                     NU_TAXA_PERMANENCIA numeric(6,2),  -- PRECISÃO ALTERADA DE 5,2 PARA 6,2
@@ -203,7 +199,7 @@ try:
                     %(TP_DEPENDENCIA_ADM_ESCOLA)s, %(TP_LOCALIZACAO_ESCOLA)s, %(NU_MATRICULAS)s,
                     %(NU_PARTICIPANTES_NEC_ESP)s, %(NU_PARTICIPANTES)s, %(NU_TAXA_PARTICIPACAO)s,
                     %(NU_MEDIA_CN)s, %(NU_MEDIA_CH)s, %(NU_MEDIA_LP)s, %(NU_MEDIA_MT)s,
-                    %(NU_MEDIA_RED)s, %(NU_MEDIA_OBJ)s, %(NU_MEDIA_TOT)s, %(INSE)s,
+                    %(NU_MEDIA_RED)s, %(INSE)s,
                     %(PC_FORMACAO_DOCENTE)s, %(NU_TAXA_PERMANENCIA)s, %(NU_TAXA_APROVACAO)s,
                     %(NU_TAXA_REPROVACAO)s, %(NU_TAXA_ABANDONO)s, %(PORTE_ESCOLA)s
                 )
@@ -235,8 +231,6 @@ try:
                         'NU_MEDIA_LP': check_numeric(row['NU_MEDIA_LP'], 6, 2, 'NU_MEDIA_LP'),
                         'NU_MEDIA_MT': check_numeric(row['NU_MEDIA_MT'], 6, 2, 'NU_MEDIA_MT'),
                         'NU_MEDIA_RED': check_numeric(row['NU_MEDIA_RED'], 6, 2, 'NU_MEDIA_RED'),
-                        'NU_MEDIA_OBJ': check_numeric(row['NU_MEDIA_OBJ'], 6, 2, 'NU_MEDIA_OBJ'),
-                        'NU_MEDIA_TOT': check_numeric(row['NU_MEDIA_TOT'], 6, 2, 'NU_MEDIA_TOT'),
                         'INSE': row['INSE'],
                         'PC_FORMACAO_DOCENTE': check_numeric(row['PC_FORMACAO_DOCENTE'], 5, 2, 'PC_FORMACAO_DOCENTE'),
                         'NU_TAXA_PERMANENCIA': check_numeric(row['NU_TAXA_PERMANENCIA'], 6, 2, 'NU_TAXA_PERMANENCIA'),  # PRECISÃO ALTERADA
