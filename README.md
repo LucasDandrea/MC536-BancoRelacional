@@ -11,7 +11,7 @@ Para essa tarefa, foi criado um banco de dados que busca relacionar índices esc
 
 ## Datasets
 Foram usados os seguintes datasets para o projeto:
-- [MICRODADOS_ENEM_ESCOLA](dados/brutos/microdados_enem_por_escola.zip): relacions escolas, de diferentes locais, com seus índices escolares e desempenho no ENEM em cada participação.
+- [MICRODADOS_ENEM_ESCOLA.csv](dados/brutos/microdados_enem_por_escola.zip): relacions escolas, de diferentes locais, com seus índices escolares e desempenho no ENEM em cada participação.
 - [mundo_trabalho.csv](dados/brutos/mundo_trabalho_csv.zip): contém dados de alunos e ex-alunos do Instituto Federal de Brasília sobre suas matrículas em diferentes cursos e sobre seus vínculos empregatícios. <br/> <br/>
 
 OBS: os datasets em formato CSV estão compactados dentro de arquivos ZIP
@@ -38,4 +38,11 @@ O SQL do modelo físico, gerado pela ferramenta pgAdmin 4, está no reposítorio
 - desempenho_enem: contém informações sobre o desempenho no ENEM de uma escola em determinado ano
 - participacao_enem: contém informações sobre a participação de uma escola em determinado ano, como número de participantes
 
-  
+## Como testar
+ 
+## Consultas
+- [query 1](queries/query1.sql):
+- [query 2](queries/query2.sql):
+- [query 3](queries/query3.sql):
+- [query 4](queries/query4.sql):
+- [query 5](queries/query5.sql):
