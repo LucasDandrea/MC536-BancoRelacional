@@ -47,15 +47,20 @@ O SQL do modelo físico, gerado pela ferramenta pgAdmin 4, está no reposítorio
 - [query 4](queries/query4.sql):
 
 Análise de Relação entre Abandono Escolar e Tempo de Emprego
+
 Objetivo: Investigar se existe correlação entre a taxa de abandono escolar no IFB e a duração dos vínculos empregatícios dos egressos.
 
 Mecanismo de Funcionamento:
 
-1.Filtragem Inicial: Seleciona alunos que ingressaram entre 2009-2015 (alunos_ano_de_entrada).
-2.Consolidação de Matrículas: Mantém apenas a última matrícula de cada aluno (formatando_uma_matricula).
-3.Cruzamento com Dados Empregatícios: Relaciona com vínculos de trabalho, excluindo casos sem desligamento (comparando_com_ano_empregado).
-4.Indicadores Educacionais: Adiciona a taxa de abandono da escola específica (código 53006178) no ano de ingresso (puxando_taxa_abandono_escola).
-5.Classificação: Categoriza tanto o tempo de emprego quanto a taxa de abandono em níveis BAIXA, MÉDIA e ALTA (indicadores_abandono).
+1. Filtragem Inicial: Seleciona alunos que ingressaram entre 2009-2015 (alunos_ano_de_entrada).
+
+2. Consolidação de Matrículas: Mantém apenas a última matrícula de cada aluno (formatando_uma_matricula).
+
+3. Cruzamento com Dados Empregatícios: Relaciona com vínculos de trabalho, excluindo casos sem desligamento (comparando_com_ano_empregado).
+
+4. Indicadores Educacionais: Adiciona a taxa de abandono da escola específica (código 53006178) no ano de ingresso (puxando_taxa_abandono_escola).
+
+5. Classificação: Categoriza tanto o tempo de emprego quanto a taxa de abandono em níveis BAIXA, MÉDIA e ALTA (indicadores_abandono).
 
 Métricas-Chave:
 
@@ -65,22 +70,27 @@ Métricas-Chave:
 
 Aplicações Práticas:
 
-- Identificar se alunos de períodos com maior evasão escolar tendem a ter menor estabilidade no mercado de trabalho
-- Subsidiar políticas de retenção estudantil com base no impacto futuro na empregabilidade
-- Comparar a eficácia de diferentes estratégias pedagógicas ao longo dos anos
-  
+1. Identificar se alunos de períodos com maior evasão escolar tendem a ter menor estabilidade no mercado de trabalho
+2. Subsidiar políticas de retenção estudantil com base no impacto futuro na empregabilidade
+3. Comparar a eficácia de diferentes estratégias pedagógicas ao longo dos anos
+ 
 - [query 5](queries/query5.sql):
   
 Mobilidade Geográfica e Remuneração de Egressos
+
 Objetivo: Analisar o perfil de remuneração e mobilidade geográfica de alunos formados em cursos presenciais.
 
 Mecanismo de Funcionamento:
 
-1.Seleção Inicial: Identifica alunos de cursos presenciais com sua última matrícula (matriculados_a_distancia).
-2.Vínculos Empregatícios: Relaciona com a última remuneração registrada (relacionando_com_idremuneracao).
-3.Filtragem Qualitativa: Considera apenas remunerações acima de R$1.000 (matriculados_a_distancia_remuneracao).
-4.Análise Geográfica: Compara município da escola, por meio da tabela Escola, com município do emprego (quantidade_alunos_que_saem_da_cidade).
-5.Consolidação: Mantém apenas o registro mais recente para cada aluno (tabela_formatada).
+1. Seleção Inicial: Identifica alunos de cursos presenciais com sua última matrícula (matriculados_a_distancia).
+
+2. Vínculos Empregatícios: Relaciona com a última remuneração registrada (relacionando_com_idremuneracao).
+
+3. Filtragem Qualitativa: Considera apenas remunerações acima de R$1.000 (matriculados_a_distancia_remuneracao).
+
+4. Análise Geográfica: Compara município da escola, por meio da tabela Escola, com município do emprego (quantidade_alunos_que_saem_da_cidade).
+
+5. Consolidação: Mantém apenas o registro mais recente para cada aluno (tabela_formatada).
 
 Métricas-Chave:
 
@@ -90,7 +100,7 @@ Métricas-Chave:
 
 Aplicações Práticas:
 
-- Identificar cursos com maior índice de migração para outras cidades
-- Analisar a relação entre mobilidade geográfica e ganhos salariais
-- Subsidiar políticas de atração de empregos locais para egressos
-- Orientar alunos sobre oportunidades em diferentes regiões
+1. Identificar cursos com maior índice de migração para outras cidades
+2. Analisar a relação entre mobilidade geográfica e ganhos salariais
+3. Subsidiar políticas de atração de empregos locais para egressos
+4. Orientar alunos sobre oportunidades em diferentes regiões
