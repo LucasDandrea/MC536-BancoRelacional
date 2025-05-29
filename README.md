@@ -11,7 +11,7 @@ Para essa tarefa, foi criado um banco de dados que busca relacionar índices esc
 
 ## Datasets
 Foram usados os seguintes datasets para o projeto:
-- [MICRODADOS_ENEM_ESCOLA.csv](dados/brutos/microdados_enem_por_escola.zip): relacions escolas, de diferentes locais, com seus índices escolares e desempenho no ENEM em cada participação.
+- [MICRODADOS_ENEM_ESCOLA.csv](dados/brutos/microdados_enem_por_escola.zip): relaciona escolas, de diferentes locais, com seus índices escolares e desempenho no ENEM em cada participação.
 - [mundo_trabalho.csv](dados/brutos/mundo_trabalho_csv.zip): contém dados de alunos e ex-alunos do Instituto Federal de Brasília sobre suas matrículas em diferentes cursos e sobre seus vínculos empregatícios. <br/> <br/>
 
 OBS: os datasets em formato CSV estão compactados dentro de arquivos ZIP
@@ -39,68 +39,36 @@ O SQL do modelo físico, gerado pela ferramenta pgAdmin 4, está no reposítorio
 - participacao_enem: contém informações sobre a participação de uma escola em determinado ano, como número de participantes
 
 ## Como testar
- 
+
+### 1. Criar o banco
+Para criar o banco, é necessário ter o PostgreSQL e o pgAdmin 4 instalados na máquina. Depois, é preciso criar um novo banco de dados no pgAdmin 4 e copiar e colar o SQL do arquivo [modelos/modelo_fisico.sql](modelos/modelo_fisico.sql), utilizando a ferramenta Query Tool, do pgAdmin 4, que pode ser acessada clicando com o botão direito no nome do banco de dados no menu lateral da esquerda.
+
+### 2. Popular o banco
+Agora, para popular o banco, é necessário executar os scripts da pasta [/scripts_insercao](scripts_insercao). Perceba que os scripts Python estão ordenados, de maneira que é necessário executá-los em ordem crescente (de 01 até 08). Lembre-se de colocar as credenciais corretas para o seu banco nos scripts que precisam de uma conexão, que é feita através da biblioteca psycopg2.
+
+### 3. Executar as consultas
+Para executar as queries, basta copiar e colar o SQL dos arquivos da pasta [/queries](queries), utilizando a ferramenta Query Tool, do pgAdmin 4, da mesma forma que foi usada no item 1.
+
 ## Consultas
-- [query 1](queries/query1.sql):
-- [query 2](queries/query2.sql):
-- [query 3](queries/query3.sql):
-- [query 4](queries/query4.sql):
+### - [Query 1](queries/query1.sql): Desempenho Escolar e Remuneração de Egressos do IFB
+Objetivo: Avaliar a correlação entre o desempenho no ENEM dos alunos do Instituto Federal de Brasília (IFB) e os valores de remuneração média e salário contratual obtidos por eles ao ingressarem no mercado de trabalho, considerando o ano de admissão como referência temporal comum.
 
-Análise de Relação entre Abandono Escolar e Tempo de Emprego
+### - [Query 2](queries/query2.sql): Remuneração e Desempenho no ENEM por Localidade e Ano
+Objetivo: Analisar a relação entre a remuneração média de egressos no mercado de trabalho formal e o desempenho médio dos estudantes no ENEM, segmentado por município e ano.
 
-Objetivo: Investigar se existe correlação entre a taxa de abandono escolar no IFB e a duração dos vínculos empregatícios dos egressos.
+### - [Query 3](queries/query3.sql): Qualidade Educacional e Condições de Trabalho por Localidade
+Objetivo: Investigar a relação entre o desempenho médio no ENEM dos municípios e as condições contratuais dos vínculos empregatícios ativos nesses locais, considerando remuneração média, carga horária e número de escolas participantes.
 
-Mecanismo de Funcionamento:
-
-1. Filtragem Inicial: Seleciona alunos que ingressaram entre 2009-2015 (alunos_ano_de_entrada).
-
-2. Consolidação de Matrículas: Mantém apenas a última matrícula de cada aluno (formatando_uma_matricula).
-
-3. Cruzamento com Dados Empregatícios: Relaciona com vínculos de trabalho, excluindo casos sem desligamento (comparando_com_ano_empregado).
-
-4. Indicadores Educacionais: Adiciona a taxa de abandono da escola específica (código 53006178) no ano de ingresso (puxando_taxa_abandono_escola).
-
-5. Classificação: Categoriza tanto o tempo de emprego quanto a taxa de abandono em níveis BAIXA, MÉDIA e ALTA (indicadores_abandono).
-
-Métricas-Chave:
-
-- tempo_emprego: Duração em meses do vínculo empregatício
-- taxa_abandono_ifb: Percentual de abandono no ano de ingresso
-- Classificações comparativas entre abandono escolar e empregatício
-
-Aplicações Práticas:
-
-1. Identificar se alunos de períodos com maior evasão escolar tendem a ter menor estabilidade no mercado de trabalho
-2. Subsidiar políticas de retenção estudantil com base no impacto futuro na empregabilidade
-3. Comparar a eficácia de diferentes estratégias pedagógicas ao longo dos anos
+### - [Query 4](queries/query4.sql): Análise de Relação entre Abandono Escolar e Tempo de Emprego
+Objetivo: Investigar se existe relação entre a taxa de abandono escolar no IFB e o tempo de permanência dos alunos no primeiro emprego formal, considerando os ingressantes entre 2009 e 2015. A análise classifica os níveis de abandono tanto no ambiente escolar quanto no empregatício, permitindo identificar possíveis padrões de evasão e sua influência na trajetória profissional dos egressos.
  
-- [query 5](queries/query5.sql):
-  
-Mobilidade Geográfica e Remuneração de Egressos
+### - [Query 5](queries/query5.sql): Mobilidade Geográfica e Remuneração de Egressos
+Objetivo: Analisar os alunos do IFB que estudaram em cursos presenciais e que, após formados, conseguiram empregos com remuneração anual igual ou superior a R$1000 fora do município de sua escola. O foco é identificar padrões de migração geográfica para o trabalho, relacionando a última remuneração conhecida com o curso frequentado e o deslocamento entre município de estudo e município de emprego.
 
-Objetivo: Analisar o perfil de remuneração e mobilidade geográfica de alunos formados em cursos presenciais.
 
-Mecanismo de Funcionamento:
 
-1. Seleção Inicial: Identifica alunos de cursos presenciais com sua última matrícula (matriculados_a_distancia).
 
-2. Vínculos Empregatícios: Relaciona com a última remuneração registrada (relacionando_com_idremuneracao).
 
-3. Filtragem Qualitativa: Considera apenas remunerações acima de R$1.000 (matriculados_a_distancia_remuneracao).
 
-4. Análise Geográfica: Compara município da escola, por meio da tabela Escola, com município do emprego (quantidade_alunos_que_saem_da_cidade).
 
-5. Consolidação: Mantém apenas o registro mais recente para cada aluno (tabela_formatada).
 
-Métricas-Chave:
-
-- vl_ultima_remuneracao_ano: Remuneração anual no último emprego registrado
-- municipio_escola vs municipio_empregado: Mobilidade geográfica
-- no_curso: Área de formação do egresso
-
-Aplicações Práticas:
-
-1. Identificar cursos com maior índice de migração para outras cidades
-2. Analisar a relação entre mobilidade geográfica e ganhos salariais
-3. Subsidiar políticas de atração de empregos locais para egressos
-4. Orientar alunos sobre oportunidades em diferentes regiões
